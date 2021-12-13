@@ -3,35 +3,36 @@
     <head>
         <meta charset="utf-8">
         <title>Counter</title>
+        <style>
+          body {background-color: lightblue;}
+          .calculator {
+          border: 1px groove grey;
+            text-align: center;
+            margin: auto;
+            width: 30%;
+            padding: 10px;
+        }
+        .sum{
+          text-align: center;
+        }
+        </style>
       </head>
       <body>
         <div class="calculator">
-        <p><input type="button" value="+" onClick="calculationAddUpperNumber()">
+        <p><input type="button" value="+" onClick="calculationUpperNumber(this.value)">
         <label id = upperNumber>0</label>
-        <input type="button" value="-" onClick="calculationMinusUpperNumber()">
+        <input type="button" value="-" onClick="calculationUpperNumber(this.value)">
         </p>
-        <p><input type="button" value="+" onClick="calculationAddLowerNumber()">
+        <p><input type="button" value="+" onClick="calculationLowerNumber(this.value)">
           <label id = lowerNumber>0</label>
-          <input type="button" value="-" onClick="calculationMinusLowerNumber()">
+          <input type="button" value="-" onClick="calculationLowerNumber(this.value)">
           </p>
         </div>
           <div class="sum">
+            <label>Sum:</label>
             <label id = sum>0</label>
       </div>
-      </body>
-      <style>
-        body {background-color: lightblue;}
-        .calculator {
-        border: 1px groove grey;
-          text-align: center;
-          margin: auto;
-          width: 30%;
-          padding: 10px;
-      }
-      .sum{
-        text-align: center;
-      }
-      </style>
+      </body>    
 </html>
 <script>
   
@@ -40,34 +41,33 @@
   var lowerNumber
   function doSum(){
     sum = parseInt(document.getElementById("sum").innerHTML);
-    console.log(upperNumber);
-    console.log(lowerNumber);
     sum = upperNumber + lowerNumber;
-    document.getElementById("sum").innerHTML = (sum).toString()
-    
-  }
-  function calculationAddUpperNumber(){
-    upperNumber = parseInt(document.getElementById("upperNumber").innerHTML)+1;
-    lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML);
-    document.getElementById("upperNumber").innerHTML = (upperNumber).toString() ;
+    document.getElementById("sum").innerHTML = (sum).toString()}
+
+  function calculationUpperNumber(symbol){
+    if ( symbol == "+"){
+        upperNumber = parseInt(document.getElementById("upperNumber").innerHTML)+1;
+        lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML);
+    }
+    else{
+        upperNumber = parseInt(document.getElementById("upperNumber").innerHTML)-1;
+        lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML);
+    }
+    document.getElementById("upperNumber").innerHTML = (upperNumber).toString()
     doSum()
   }
-  function calculationMinusUpperNumber(){
-    upperNumber = parseInt(document.getElementById("upperNumber").innerHTML) -1;
-    lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML);
-    document.getElementById("upperNumber").innerHTML = (upperNumber).toString() ;
+
+  function calculationLowerNumber(symbol){
+    if ( symbol == "+"){
+        upperNumber = parseInt(document.getElementById("upperNumber").innerHTML);
+        lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML)+1;
+    }
+    else{
+        upperNumber = parseInt(document.getElementById("upperNumber").innerHTML);
+        lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML)-1;
+    }
+    document.getElementById("lowerNumber").innerHTML = (lowerNumber).toString()
     doSum()
   }
-  function calculationAddLowerNumber(){
-    upperNumber = parseInt(document.getElementById("upperNumber").innerHTML);
-    lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML)+1;
-    document.getElementById("lowerNumber").innerHTML = (lowerNumber).toString() ;
-    doSum()
-  }
-  function calculationMinusLowerNumber(){
-    upperNumber = parseInt(document.getElementById("upperNumber").innerHTML);
-    lowerNumber = parseInt(document.getElementById("lowerNumber").innerHTML)-1;
-    document.getElementById("lowerNumber").innerHTML = (lowerNumber).toString() ;
-    doSum()
-  }
+
 </script>
